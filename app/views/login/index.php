@@ -1,9 +1,32 @@
 <?php require_once 'app/views/templates/headerPublic.php'?>
+
+<head>
+	<title>QiuruiWu</title>
+	<style>
+		.page-header {
+				background-color: #007bff;
+				color: #fff;
+				padding: 20px 0;
+				text-align: center;
+		}
+
+		.form-group {
+				margin-bottom: 15px;
+		}
+
+		button.btn:hover {
+				background-color: #0056b3;
+				border-color: #004085;
+		}
+
+	</style>
+</head>
+
 <main role="main" class="container">
     <div class="page-header" id="banner">
         <div class="row">
             <div class="col-lg-12">
-                <h1>You are not logged in</h1>
+                <h1>Login Here</h1>
             </div>
         </div>
     </div>
