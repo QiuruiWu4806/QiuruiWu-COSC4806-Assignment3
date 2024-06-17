@@ -15,6 +15,7 @@ class User {
       $statement = $db->prepare("select * from users;");
       $statement->execute();
       $rows = $statement->fetch(PDO::FETCH_ASSOC);
+      //print_r($rows);
       return $rows;
     }
 
