@@ -42,6 +42,14 @@ class User {
 			$_SESSION['auth'] = 1;
 			$_SESSION['username'] = ucwords($username);
 			unset($_SESSION['failedAuth']);
+
+      //add log to database
+      $statement = $db->prepare("INSERT INTO log (username, goodAttempt,badAttempt,time) VALUES (:username, :attempt, :time)");
+        $statement->bindValue(':username', $username);
+        $statement->bindValue(':attempt', $_SESSION['failedAuth'] + 1);
+        $statement->bindValue(':time', time());
+        $statement->execute();
+      
 			header('Location: /home');
 			die;
 		} else {
