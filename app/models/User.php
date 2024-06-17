@@ -20,6 +20,13 @@ class User {
     }
 
     public function authenticate($username, $password) {
+
+      if (isset($_SESSION['lockout'])){
+          if (time() < $_SESSION['lockout']) {
+              echo "you need to wait " . ($_SESSION['lockout'] - time()) . " seconds before you can try again";
+              die;
+          }
+      }
         /*
          * if username and password good then
          * $this->auth = true;
@@ -43,6 +50,10 @@ class User {
 			} else {
 				$_SESSION['failedAuth'] = 1;
 			}
+      
+      if ($_SESSION['failedAuth'] >= 3) {
+          $_SESSION['lockout'] = time() + 60; // Lockout until current time + 60 seconds
+      }
 			header('Location: /login');
 			die;
 		}
